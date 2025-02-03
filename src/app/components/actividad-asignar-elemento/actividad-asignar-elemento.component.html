@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3>Asignar elementos a la Actividad</h3>
+  </div>
+<!--
+
+<table mat-table [dataSource]="elementos" class="mat-elevation-z8" >
+  <ng-container matColumnDef="idElemento">
+    <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+    <mat-cell *matCellDef="let elemento"> {{ elemento.idElemento }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="codigo">
+    <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
+    <mat-cell *matCellDef="let elemento"> {{ elemento.codigo }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let elemento"> {{ elemento.nombre }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="unidad">
+    <mat-header-cell *matHeaderCellDef> Unidad </mat-header-cell>
+    <mat-cell *matCellDef="let elemento"> {{ elemento.unidad }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cantidad">
+    <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+    <mat-cell *matCellDef="let elemento"> {{ elemento.cantidad }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="precioUnitario">
+    <mat-header-cell *matHeaderCellDef> Precio Unitario </mat-header-cell>
+    <mat-cell *matCellDef="let elemento"> {{ elemento.precioUnitario }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+    <mat-cell *matCellDef="let elemento">
+      <button mat-button (click)="asignarElemento(actividad.idActividad, elemento.idElemento)">Asignar</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table >
+-->
+<div class="container text-end" style="margin: 10px">
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar..." />
+</div>
+<table class="table table-hover align-middle">
+  <thead class="table-secondary">
+    <tr>
+      
+      <th scope="col">Codigo</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Unidad</th>
+    
+      <th scope="col">Precio Unitario</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let elemento of filteredData()">
+      <td>{{ elemento.codigo }}</td>
+      <th>{{ elemento.nombre }}</th>
+      <td>{{ elemento.unidad }}</td>
+      <th>{{ elemento.precioUnitario }}</th>
+      <td>
+        <button (click)="asignarElemento(actividad.idActividad,elemento.idElemento)">Asignar</button>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  

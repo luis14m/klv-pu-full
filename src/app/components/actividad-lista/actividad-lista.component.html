@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3>Listado Base de Actividades</h3>
+  </div>
+  <div class="container text-end" style="margin: 10px">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar..." />
+  </div>
+
+  <table class="table table-hover align-middle">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Unidad</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let actividad of filteredData()">
+        <td><a [routerLink]="['/actividad-detalle', actividad.idActividad]">{{ actividad.codigo }}</a></td>
+        <td><a [routerLink]="['/actividad-detalle', actividad.idActividad]">{{ actividad.nombre }}</a></td>
+        <td>{{ actividad.descripcion}}</td>
+        <td>{{ actividad.unidad }}</td>
+
+        <td>
+          <button
+            class="btn btn-success btn-sm me-2"
+            (click)="detalleActividad(actividad.idActividad)"
+          >
+            <i class="bi bi-arrow-right-square-fill"></i>
+          </button>
+          <button
+            class="btn btn-warning btn-sm me-2"
+            (click)="editarActividad(actividad.idActividad)"
+          >
+            <a href="editar-actividad"></a>
+            <i class="bi bi-pencil"></i>
+          </button>
+
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="eliminarActividad(actividad.idActividad)"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

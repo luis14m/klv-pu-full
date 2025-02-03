@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3>APU de Actividad</h3>
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <table class="table table-hover">
+      <thead class="table-secondary">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Unidad</th>
+          <th scope="col">Precio Unitario</th>
+          <th scope="col">Precio Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            {{ actividad.codigo }}
+          </th>
+          <th>
+            {{ actividad.nombre }}
+          </th>
+
+          <td>
+            <input
+              type="number"
+              id="cantidad"
+              name="cantidad"
+              required="true"
+              [(ngModel)]="actividad.cantidad"
+              class="form-control"
+              placeholder="1"
+              size="3"
+            />
+          </td>
+          <td>
+            <select
+              id="unidad"
+              name="unidad"
+              required="true"
+              [(ngModel)]="actividad.unidad"
+              class="form-control"
+            >
+              <option value="ML" selected>ML</option>
+              <option value="M²">M²</option>
+              <option value="M³">M³</option>
+            </select>
+          </td>
+          <td>
+            <input
+              type="number"
+              id="precioUnitario"
+              name="precioUnitario"
+              required="true"
+              [(ngModel)]="actividad.precioUnitario"
+              class="form-control"
+              placeholder="1000"
+              size="5"
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              id="precioTotal"
+              name="precioTotal"
+              required="true"
+              [(ngModel)]="actividad.precioTotal"
+              class="form-control"
+              placeholder="2000"
+              size="5"
+            />
+          </td>
+        </tr>
+        <tr *ngFor="let elemento of actividad.elementos">
+          <td>{{ elemento.codigo }}</td>
+          <td>{{ elemento.nombre }}</td>
+          <td>
+            <input
+              type="number"
+              [(ngModel)]="elemento.cantidad"
+              class="form-control form-control-sm"
+              min="1"
+              required="true"
+              placeholder="1"
+            />
+          </td>
+          <td>{{ elemento.unidad }}</td>
+          <td>{{ elemento.precioUnitario }}</td>
+          <td>{{ elemento.precioTotal }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center" style="margin: 10px">
+      <a
+        href="/actividad-detalle/{{ actividad.idActividad }}"
+        class="btn btn-danger btn-sm"
+        >Volver</a
+      >
+      <button type="submit" class="btn btn-warning btn-sm">Aplicar</button>
+    </div>
+  </form>
+</div>

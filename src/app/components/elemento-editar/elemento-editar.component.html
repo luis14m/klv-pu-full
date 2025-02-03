@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3>Actualizar Precios de Elemento</h3>
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <table class="table table-hover">
+      <thead class="table-secondary">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Unidad</th>
+          
+          <th scope="col">Precio Unitario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              id="codigo"
+              name="codigo"
+              required="true"
+              [(ngModel)]="elemento.codigo"
+              class="form-control"
+              placeholder="ABC01"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required="true"
+              [(ngModel)]="elemento.nombre"
+              class="form-control"
+              placeholder="Nombre del elemento"
+            />
+          </td>
+          <td>
+            <select
+              id="unidad"
+              class="form-select"
+              name="unidad"
+              required="true"
+              [(ngModel)]="elemento.unidad"
+              class="form-control"
+            >
+              
+              <option value="CM">CM</option>
+              <option value="M">M</option>
+              <option value="ML">ML</option>
+              <option value="M²">M²</option>
+              <option value="M³">M³</option>
+              <option value="Dia">Dia</option>
+              <option value="Semana">Semana</option>
+              <option value="Mes">Mes</option>
+              <option value="Kg">Kg</option>
+              <option value="G">G</option>
+              <option value="L">L</option>
+              <option value="unidad">Unidad</option>  
+             
+
+              
+            </select>
+            
+            
+          </td>
+          
+          <td>
+            <input
+              type="number"
+              id="precioUnitario"
+              name="precioUnitario"
+              required="true"
+              [(ngModel)]="elemento.precioUnitario"
+              class="form-control"
+              placeholder="Precio Unitario"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center" style="margin: 15px">
+      <a href="/elementos" class="btn btn-danger btn-sm">Volver</a>
+      <button type="submit" class="btn btn-warning btn-sm">Actualizar</button>
+    </div>
+  </form>
+</div>
