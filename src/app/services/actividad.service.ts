@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Actividad } from '../models/actividad';
 import { Elemento } from '../models/elemento';
-import { DBService } from './db.service';
+
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ActividadService {
   private urlBase = 'http://localhost:8080/apu/actividades';
 
   constructor(private clienteHttp: HttpClient,
-    private dbService: DBService
+    //private dbService: DBService
   ) { }
 
   obtenerActividadLista(): Observable<Actividad[]> {
@@ -44,7 +44,7 @@ export class ActividadService {
 
   //          ***RxDatabase***
 
-  async addActividad(actividad: Actividad) {
+  /* async addActividad(actividad: Actividad) {
     await this.dbService.actividades.insert(actividad);
     console.log('📌 Actividad insertada:', actividad);
   }
@@ -59,6 +59,6 @@ export class ActividadService {
       await actividad.update({ $set: { elementos: updatedElementos } });
       console.log(`🟢 Elemento agregado a la actividad ${actividadId}:`, elemento);
     }
-  }
+  } */
 
 }

@@ -4,11 +4,16 @@ import { ActividadService } from '../../services/actividad.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ElementoService } from '../../services/elemento.service';
 import { Elemento } from '../../models/elemento';
+//import * from XLSX;
+import { NgFor } from '@angular/common';
 import * as XLSX from 'xlsx';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-resumen',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule,NgFor],
+ 
   templateUrl: './resumen.component.html',
 })
 export class ResumenComponent {

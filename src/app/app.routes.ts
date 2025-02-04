@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+
+import { Routes } from '@angular/router';
 import { ActividadListaComponent } from './components/actividad-lista/actividad-lista.component';
 import { ElementosListaComponent } from './components/elementos-lista/elementos-lista.component';
 import { ActividadEditarComponent } from './components/actividad-editar/actividad-editar.component';
@@ -13,9 +13,12 @@ import { ActividadAsignarElementoComponent } from './components/actividad-asigna
 import { ApuEditarComponent } from './components/apu-editar/apu-editar.component';
 
 // http://localhost:4200/actividades
-const routes: Routes = [
-  {path:'actividades', component: ActividadListaComponent},
+export const routes: Routes = [
+
   {path:'',redirectTo: 'actividades',pathMatch:'full'},
+
+  {path:'actividades', component: ActividadListaComponent},
+  
   {path:'agregar-actividad', component: ActividadAgregarComponent},
   {path:'actividad-detalle/:id', component: ActividadDetalleComponent},
   {path:'actividad-editar/:id', component: ActividadEditarComponent},
@@ -27,10 +30,5 @@ const routes: Routes = [
   {path:'resumen', component: ResumenComponent},
   {path:'apu-editar/:id', component: ApuEditarComponent},
   
-]
+];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

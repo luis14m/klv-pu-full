@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { Elemento } from '../../models/elemento';
+import { Elemento } from '../../models/elemento'; // Ensure Elemento is a class, not an interface
 import { ElementoService } from '../../services/elemento.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-elemento-editar',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './elemento-editar.component.html',
   
 })

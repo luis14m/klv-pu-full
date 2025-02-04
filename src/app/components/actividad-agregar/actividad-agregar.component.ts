@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+
 import { Actividad } from '../../models/actividad';
 import { ActividadService } from '../../services/actividad.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-actividad-agregar',
   templateUrl: './actividad-agregar.component.html',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule],
   
 })
 export default class ActividadAgregarComponent {

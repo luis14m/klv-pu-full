@@ -1,2 +1,2 @@
 # klv-pu-full
-App web en Angular y Supabase.
+App web de precios unitarios en Angular y Supabase.

@@ -10,7 +10,9 @@ export class Actividad {
     unidad: string;
     precioUnitario: number;
     precioTotal: number;
+    fechaUpdate: Date;
     elementos: Elemento[];
+
 
 }
  

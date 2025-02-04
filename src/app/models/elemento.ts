@@ -5,8 +5,12 @@ export class Elemento {
     nombre: string;
     unidad: string;
     tipo: string;
-    costo: number;
     cantidad: number;
     precioUnitario: number;
+    precioTotal: number;
+    fechaRegistro: Date;
+    fechaUpdate: Date;
+    constructor() {}
+    
     
 }

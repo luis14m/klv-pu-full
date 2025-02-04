@@ -1,9 +1,6 @@
 
 .logo {
-  max-width: 300px;
-  height: auto;
-  display: auto;
-  margin: 0 auto;
+  max-width: 9.2rem;
 }
 
 @media (max-width: 768px) {

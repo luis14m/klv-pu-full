@@ -3,16 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Elemento } from '../models/elemento';
 
-import { DBService } from './db.service';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ElementoService {
-  private baseURL = 'http://localhost:8080/analisispu/elementos';
+  private baseURL = 'http://localhost:8080/apu/elementos';
 
   constructor(private httpClient: HttpClient,
-    private dbService: DBService
+    //private dbService: DBService
   ) { }
 
   obtenerElementoLista(): Observable<Elemento[]> {
@@ -37,12 +35,12 @@ export class ElementoService {
 
    // Método para agregar un nuevo elemento
    async addElemento(elemento: Elemento) {
-    await this.dbService.elementos.insert(elemento);
+    //await this.dbService.elementos.insert(elemento);
     console.log('📌 Elemento insertado:', elemento);
   }
 
   // Método para obtener todos los elementos de Rxdatabase
   async getElementos() {
-    return await this.dbService.elementos.find().exec();
+   // return await this.dbService.elementos.find().exec();
   }
 }

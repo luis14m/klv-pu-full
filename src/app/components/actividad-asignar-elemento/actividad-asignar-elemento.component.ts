@@ -1,21 +1,24 @@
 import { Component, Inject } from '@angular/core';
 import { Elemento } from '../../models/elemento';
 import { Actividad } from '../../models/actividad';
-import Swal from 'sweetalert2';
+
 import { ElementoService } from '../../services/elemento.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ActividadService } from '../../services/actividad.service';
+import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-actividad-asignar-elemento',
-  standalone:false,
+  standalone: true,
+  imports: [FormsModule, NgFor],
   styleUrls: ['./actividad-asignar-elemento.component.css'],
   templateUrl: './actividad-asignar-elemento.component.html',
 })
 export class ActividadAsignarElementoComponent {
-  actividad: Actividad;
-  idActividad: number;
+  
+  actividad!: Actividad;
+  idActividad!: number;
   elementos: Elemento[] = [];
   searchTerm: string = '';
   displayedColumns: string[] = ['idElemento', 'codigo', 
@@ -25,10 +28,11 @@ export class ActividadAsignarElementoComponent {
     private actividadServicio: ActividadService,
     private elementoServicio: ElementoService, 
     private enrutador: Router,
-    private ruta: ActivatedRoute,
-    private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: { idActividad: number, title: string }){
-    this.idActividad = data.idActividad;
+    private ruta: ActivatedRoute)
+    //private dialog: MatDialog,
+    /* @Inject(MAT_DIALOG_DATA) public data: { idActividad: number, title: string }){
+    this.idActividad = data.idActividad; */
+  {
     }
 
 
@@ -73,31 +77,31 @@ export class ActividadAsignarElementoComponent {
       .subscribe({
         next: (datos) => {
           console.log('Elemento asignado con éxito:', datos);
-          Swal.fire({
+         /*  Swal.fire({
             icon: 'success',
             title: 'Elemento asignado con éxito',
             showConfirmButton: true,
             timer: 3000,
-          });
+          }); */
 
           (error: any) => {
             console.error('Error al asignar el elemento:', error);
-            Swal.fire({
+          /*   //Swal.fire({
               icon: 'error',
               title: 'Error al asignar el elemento',
               showConfirmButton: false,
               timer: 1500,
-            });
+            }); */
 
           }
         } 
       });      
   }
 
-  openDialog(idActividad: number): void {
-    this.dialog.open(ActividadAsignarElementoComponent, {
+  /* openDialog(idActividad: number): void {
+   // this.dialog.open(ActividadAsignarElementoComponent, {
       width: '800px',
       data: { idActividad: idActividad, title: 'Buscar Elementos' },
     });
-  }
+  } */
 }

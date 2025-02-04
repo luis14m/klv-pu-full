@@ -1,24 +1,19 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Actividad } from '../../models/actividad';
 import { ActividadService } from '../../services/actividad.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Elemento } from '../../models/elemento';
 import { ElementoService } from '../../services/elemento.service';
-import { DBService, } from '../../services/db.service';
-import { OnInit } from '@angular/core';
-import { RxDatabase } from 'rxdb';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { addRxPlugin } from 'rxdb';
-import { RxDBDevModePlugin } from 'rxdb/plugins/dev-mode';
-addRxPlugin(RxDBDevModePlugin);
 
+import { OnInit } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-apu-editar',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule,NgFor],
   templateUrl: './apu-editar.component.html',
 
 })
@@ -38,12 +33,14 @@ export class ApuEditarComponent implements OnInit {
     private enrutador: Router,
     private ruta: ActivatedRoute,
     private actividadService: ActividadService) { }
+    
+  
 
   async ngOnInit() {
 
     this.obtenerActividad();
 
-    await this.actividadService.addActividad(this.actividad);
+    //await this.actividadService.addActividad(this.actividad);
 
 
 
@@ -51,7 +48,7 @@ export class ApuEditarComponent implements OnInit {
 
   onSubmit() {
 
-    this.calcular();
+    //this.calcular();
     this.guardarActividad();
 
   }
@@ -68,7 +65,7 @@ export class ApuEditarComponent implements OnInit {
 
   }
 
-  calcular() {
+ /*  calcular() {
     if (!this.actividad || !this.actividad.elementos) {
       console.warn('No hay actividad o elementos para calcular');
       return;
@@ -94,7 +91,7 @@ export class ApuEditarComponent implements OnInit {
       actividadTotal: this.actividad.precioTotal,
       precioUnitario: this.actividad.precioUnitario
     });
-  }
+  } */
 
   guardarActividad() {
 

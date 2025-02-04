@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-auth',
@@ -7,6 +10,7 @@ import { Component } from '@angular/core';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
+
 export class AuthComponent {
 
 }

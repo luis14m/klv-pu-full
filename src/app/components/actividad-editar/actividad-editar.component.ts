@@ -7,11 +7,12 @@ import { ElementoService } from '../../services/elemento.service';
 import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-actividad-editar',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './actividad-editar.component.html'
 
 })

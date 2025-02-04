@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { Elemento } from '../../models/elemento'; // Ensure the path is correct and the file exists
 import { ElementoService } from '../../services/elemento.service'; // Assuming you have an ElementoService similar to ActividadService
 import { Router } from '@angular/router';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-elementos-lista',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule,NgFor], // Importa BrowserModule solo en main.ts
   templateUrl: './elementos-lista.component.html',
 })
 export class ElementosListaComponent {

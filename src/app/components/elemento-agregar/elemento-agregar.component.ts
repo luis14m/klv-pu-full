@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Elemento } from '../../models/elemento';
 import { ElementoService } from '../../services/elemento.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-elemento-agregar',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './elemento-agregar.component.html',
   styleUrl: './elemento-agregar.component.css'
 })

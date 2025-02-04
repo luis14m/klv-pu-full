@@ -4,15 +4,13 @@ import { ElementoService } from '../../services/elemento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actividad } from '../../models/actividad';
 import { Elemento } from '../../models/elemento';
-import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { MatDialog } from '@angular/material/dialog';
 import { ActividadAsignarElementoComponent } from '../actividad-asignar-elemento/actividad-asignar-elemento.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-actividad-detalle',
-  standalone: false,
-
+  standalone: true,
+  imports: [NgFor],
   templateUrl: './actividad-detalle.component.html',
 })
 export class ActividadDetalleComponent implements OnInit {
@@ -20,11 +18,12 @@ export class ActividadDetalleComponent implements OnInit {
 
 
   actividad: Actividad;
-  elemento: Elemento;
+  elemento: Elemento | undefined;
   idActividad: number;
   idElemento: number;
   elementos: Elemento[] = [];
   searchTerm: string='';
+  routerLink: Router;
 
 
   constructor(
@@ -32,7 +31,7 @@ export class ActividadDetalleComponent implements OnInit {
     private elementoServicio: ElementoService,
     private enrutador: Router,
     private ruta: ActivatedRoute,
-    public dialog: MatDialog
+    //public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -40,12 +39,12 @@ export class ActividadDetalleComponent implements OnInit {
     this.obtenerElementos();
   }
   
-  openDialog(idActividad: number): void {
-    this.dialog.open(ActividadAsignarElementoComponent, {
+ /*  openDialog(idActividad: number): void {
+    //this.dialog.open(ActividadAsignarElementoComponent, {
       width: '1080px',
       data: { idActividad: idActividad, title: 'Buscar Elementos' },
     });
-  }
+  } */
 
   irAsignarElemento(id: number): void { 
   

@@ -1,12 +1,15 @@
 import { Component, Pipe, PipeTransform } from '@angular/core';
 import { Actividad } from '../../models/actividad';
 import { ActividadService } from '../../services/actividad.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 
 @Component({
   selector: 'app-actividad-lista',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule,RouterLink,NgFor],
   templateUrl: './actividad-lista.component.html',
 })
 export class ActividadListaComponent {
