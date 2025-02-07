@@ -13,6 +13,8 @@ export class Actividad {
     fechaUpdate: Date;
     elementos: Elemento[];
 
+    constructor(){}
+
 
 }
  
