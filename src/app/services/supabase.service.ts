@@ -7,7 +7,8 @@ import {
   SupabaseClient,
   User,
 } from '@supabase/supabase-js'
-import { environment } from '../environments/environment'
+import { env } from '../environments/env'
+
 
 export interface Profile {
   id?: string
@@ -24,7 +25,7 @@ export class SupabaseService {
   _session: AuthSession | null = null
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
+    this.supabase = createClient(env.supabaseKey, env.supabaseUrl)
   }
 
   get session() {
@@ -70,4 +71,10 @@ export class SupabaseService {
   uploadAvatar(filePath: string, file: File) {
     return this.supabase.storage.from('avatars').upload(filePath, file)
   }
+
+  async addActividad(actividad: any) {
+    await this.supabase.from('actividades').insert(actividad)
+    console.log('📌 Actividad insertada:', actividad)
+  }
+
 }

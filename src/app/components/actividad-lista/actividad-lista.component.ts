@@ -4,6 +4,7 @@ import { ActividadService } from '../../services/actividad.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { ActividadDetalleComponent } from '../actividad-detalle/actividad-detalle.component';
 
 
 @Component({
@@ -57,6 +58,7 @@ export class ActividadListaComponent {
     });
   }
   detalleActividad(id: number): void {
+    console.log(id);
     this.enrutador.navigate(['/actividad-detalle', id]);
   }
 }

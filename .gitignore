@@ -20,7 +20,7 @@ yarn-error.log
 .env.local
 .env.staging
 .env.production
-environments
+/src/app/environments
 
 # IDEs and editors
 .idea/

@@ -7,11 +7,13 @@ import { ActividadListaComponent } from './components/actividad-lista/actividad-
 
 @Component({
   selector: 'app-root',
+
   standalone: true,
   imports: [
     RouterOutlet, 
     RouterLink, 
     RouterLinkActive], // Importa BrowserModule solo en main.ts
+    
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
   

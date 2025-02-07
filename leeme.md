@@ -101,9 +101,9 @@ VALUES
 
 1. **Obtener todas las actividades y sus elementos asociados**:
 ```sql
-SELECT a.nombre AS actividad, e.nombre AS elemento, e.tipo, e.costo, v.cantidad
-FROM Tabla_Vinculo v
-JOIN Actividades a ON v.actividad_id = a.id
+SELECT a.nombre AS actividad, e.nombre AS elemento, e.tipo, e.costo, ae.cantidad
+FROM actividad_elementos ae
+JOIN Actividades a ON ae.actividad_id = a.id
 JOIN Elementos e ON v.elemento_id = e.id;
 ```
 

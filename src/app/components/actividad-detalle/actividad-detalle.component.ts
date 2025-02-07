@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActividadService } from '../../services/actividad.service';
 import { ElementoService } from '../../services/elemento.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Actividad } from '../../models/actividad';
 import { Elemento } from '../../models/elemento';
 import { ActividadAsignarElementoComponent } from '../actividad-asignar-elemento/actividad-asignar-elemento.component';
 import { NgFor } from '@angular/common';
+import { ActividadListaComponent } from '../actividad-lista/actividad-lista.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule, NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-actividad-detalle',
   standalone: true,
-  imports: [NgFor],
+  imports: [FormsModule, NgForOf, CommonModule],
   templateUrl: './actividad-detalle.component.html',
+ 
+  
+
 })
 export class ActividadDetalleComponent implements OnInit {
 
