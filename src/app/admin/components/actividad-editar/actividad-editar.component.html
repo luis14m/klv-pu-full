@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3> Editar Actividad</h3>
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <table class="table table-hover">
+      <thead class="table-secondary">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Unidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input type="text" id="codigo" name="codigo" required="true" [(ngModel)]="actividad.codigo"
+              class="form-control" placeholder="ABC01" size="5" />
+          </td>
+          <td>
+            <input type="text" id="nombre" name="nombre" required="true" [(ngModel)]="actividad.nombre"
+              class="form-control" placeholder="nombre" size="50" />
+          </td>
+
+          <td>
+            <select id="unidad" name="unidad" required="true" [(ngModel)]="actividad.unidad" class="form-control">
+              <option value="ML" selected>ML</option>
+              <option value="M²">M²</option>
+              <option value="M³">M³</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center" style="margin: 10px">
+      <a href="/admin/actividad-detalle/{{ actividad.id }}" class="btn btn-danger btn-sm">Volver</a>
+      <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+    </div>
+  </form>
+</div>

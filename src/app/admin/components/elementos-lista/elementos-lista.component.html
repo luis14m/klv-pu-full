@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3>Listado Base de Elementos</h3>
+  </div>
+  <div class="container text-end" style="margin: 10px">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar..." />
+  </div>
+
+  <table class="table table-hover align-middle">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Unidad</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elemento of filteredData()">
+        <td>{{ elemento.codigo }}</td>
+        <td>{{ elemento.nombre }}</td>
+        <td>{{ elemento.unidad }}</td>
+        <td>{{ elemento.tipo }}</td>
+        <td>{{ elemento.precio_unitario }}</td>
+
+        <td>
+          <button
+            class="btn btn-warning btn-sm me-2"
+            (click)="elemento.id && editarElemento(elemento.id)"
+          >
+            <a class="nav" routerLink="editar-elemento"></a>
+            <i class="bi bi-pencil"></i>
+          </button>
+
+          <!-- <button
+            class="btn btn-danger btn-sm"
+            (click)="eliminarElemento(elemento.idElemento)"
+          >
+            <i class="bi bi-trash"></i>
+          </button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

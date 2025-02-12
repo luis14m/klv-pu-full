@@ -1,8 +1,8 @@
 
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { Actividad } from './models/actividad';
-import { ActividadListaComponent } from './components/actividad-lista/actividad-lista.component';
+import { ActividadListaComponent } from './admin/components/actividad-lista/actividad-lista.component';
+import { AdminModule } from './admin/admin.module';
 
 
 @Component({
@@ -12,7 +12,8 @@ import { ActividadListaComponent } from './components/actividad-lista/actividad-
   imports: [
     RouterOutlet, 
     RouterLink, 
-    RouterLinkActive], // Importa BrowserModule solo en main.ts
+    RouterLinkActive,
+  ], // Importa BrowserModule solo en main.ts
     
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

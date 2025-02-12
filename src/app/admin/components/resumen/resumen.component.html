@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3>Actividades con PU</h3>
+    <div class="text-end">
+      <button class="btn btn-success" type="button" (click)="exportToExcel()">
+        Exportar a Excel
+      </button>
+    </div>
+  </div>
+
+  <form id="table" action="submit" (ngSubmit)="onSubmit()" #actividadForm="ngForm">
+    <div class="collapse show" id="actividadesTable">
+      <table class="table table-hover">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Unitario</th>
+            <th scope="col">Precio Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let actividad of actividades; let i = index">
+            <!-- Fila de actividad -->
+            <tr>
+              <td>
+                <button class="btn btn-sm btn-outline-primary" type="button" [attr.data-bs-target]="'#elementos-' + i"
+                  data-bs-toggle="collapse">
+                  <i class="bi bi-chevron-down"></i>
+                </button>
+              </td>
+              <td>{{ actividad.codigo }}</td>
+              <td>{{ actividad.nombre }}</td>
+              <td>{{ actividad.unidad }}</td>
+              <td>{{ actividad.cantidad }}</td>
+              <td>{{ actividad.precio_unitario }}</td>
+              <td>{{ actividad.precioTotal }}</td>
+            </tr>
+            <!-- Fila de elementos colapsable -->
+            <tr>
+              <td colspan="7" class="p-0">
+                <div class="collapse" [id]="'elementos-' + i">
+                  <table class="table table-sm table-bordered m-0">
+                    <tbody>
+                      <tr *ngFor="let elemento of actividad.elementos">
+                        <td>{{ elemento.codigo }}</td>
+                        <td>{{ elemento.nombre }}</td>
+                        <td>{{ elemento.unidad }}</td>
+                        <td>
+                          <input type="number" id="cantidad" name="cantidad" required="true"
+                            [(ngModel)]="elemento.cantidad" class="form-control" placeholder="Cantidad" />
+                        </td>
+                        <td>{{ elemento.precio_unitario }}</td>
+                        <td>{{ elemento.precioTotal }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </form>
+  <div class="text-center mr-2" style="margin: 10px">
+    <a href="/" class="btn btn-danger btn-sm mr-2">Volver</a>
+    <a href="/" class="btn btn-primary btn-sm mr-2">Finalizar</a>
+  </div>
+</div>

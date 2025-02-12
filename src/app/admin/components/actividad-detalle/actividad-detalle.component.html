@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="container text-center" style="margin: 20px">
+    <h3>Detalle de la Actividad</h3>
+  </div>
+  <div *ngIf="actividad; else noData">
+    <table class="table table-hover">
+      <thead class="table-secondary">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Unidad</th>
+          <th scope="col">Precio Unitario</th>
+
+          <th scope="col">Agregar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ actividad.codigo }}</td>
+          <td>{{ actividad.nombre }}</td>
+          <td>{{ actividad.unidad }}</td>
+          <td>{{ actividad.precio_unitario }}</td>
+          <td>
+            <!-- Botón para mostrar/ocultar la sección de "asignar elemento" -->
+            <button (click)="toggleAsignarElemento()">
+              {{ mostrarAsignarElemento ? "Ocultar" : "Asignar" }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- // tabla Elementos desplegable -->
+
+  <div *ngIf="mostrarAsignarElemento">
+    <h3>Elementos disponibles</h3>
+
+    <div *ngIf="elementos.length > 0; else noElementos" class="tabla-con-scroll">
+      <table class="table table-hover">
+        <thead class="table-secondary">
+          <tr>
+            <th>Nombre</th>
+            
+            <th>Precio</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let elemento of elementos">
+            <td>{{ elemento.nombre }}</td>
+            
+            <td>{{ elemento.precio_unitario | currency }}</td>
+            <td>
+              <button (click)="asignarElemento(elemento)">Asignar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noElementos>
+      <p>No hay elementos.</p>
+    </ng-template>
+
+  </div>
+
+  <ng-template #noData>
+    <p>No se encontró la actividad.</p>
+  </ng-template>
+
+  <a routerLink="/admin/actividades">Volver</a>
