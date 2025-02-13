@@ -1,47 +1,37 @@
-import { Component } from '@angular/core';
-import { Actividad } from '../../../shared/models/actividad.model';
-import { ActividadService } from '../../services/actividad.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ElementoService } from '../../services/elemento.service';
-import { Elemento } from '../../../shared/models/elemento.model';
-//import * from XLSX;
-import { CommonModule, NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActividadElementoService } from '../../services/actividad-elemento.service';
 import * as XLSX from 'xlsx';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-resumen',
-  standalone: true, // 
-  imports: [CommonModule,FormsModule], // Importar módulos necesarios
+  selector: 'app-actividad-elemento-lista',
   templateUrl: './resumen.component.html',
+  standalone:true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule
+],
 })
-export class ResumenComponent {
-  actividades: Actividad[] = [];
+export class ResumenComponent implements OnInit {
+  actividadElementos: any[] = [];
 
-  elemento: Elemento;
-  idActividad: number;
-  idElemento: number;
-  //searchTerm: any= '';
+  constructor(private actividadElementoService: ActividadElementoService) {}
 
-  elementos: Elemento[] = [];
-
-  constructor(
-    private actividadServicio: ActividadService,
-    private elementoServicio: ElementoService,
-    private enrutador: Router,
-    private ruta: ActivatedRoute
-  ) {}
-
-  ngOnInit() {
-    //this.obtenerActividades();
+  ngOnInit(): void {
+    this.loadActividadElementos();
   }
 
-  /* private obtenerActividades() {
-    // Consumir los datos del observable (suscribirse)
-    this.actividadServicio.obtenerActividadLista().subscribe((datos) => {
-      this.actividades = datos;
-    });
-  } */
+  async loadActividadElementos(): Promise<void> {
+    try {
+      this.actividadElementos = await this.actividadElementoService.getActividadElementos();
+    } catch (error) {
+      console.error('Error loading actividad_elemento:', error);
+    }
+  }
+
 
   exportToExcel(): void {
     

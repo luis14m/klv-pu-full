@@ -106,9 +106,12 @@ export class ActividadDetalleComponent implements OnInit {
     try {
       await this.actividadService.desasignarElemento(this.actividad.id, elementoId);
       
+      
       // Actualizar listas
       const elemento = this.elementosAsignados.find(e => e.id === elementoId);
+      
       if (elemento) {
+        this.actividad.precio_unitario-=elemento.precio_unitario;
         this.elementosAsignados = this.elementosAsignados.filter(e => e.id !== elementoId);
         this.elementos = [...this.elementos, elemento];
       }
