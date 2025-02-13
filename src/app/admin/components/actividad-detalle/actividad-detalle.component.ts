@@ -21,6 +21,7 @@ export class ActividadDetalleComponent implements OnInit {
   elementos: Elemento[] = [];
   elementosAsignados: Elemento[] = [];
   mostrarAsignarElemento: boolean = false;
+  loading: boolean = false; // Add loading state property to your component
   
   searchTerm:string='';
 
@@ -75,19 +76,27 @@ export class ActividadDetalleComponent implements OnInit {
   }
 
   async asignarElemento(elemento: Elemento) {
-    if (!this.actividad) return;
-
+    if (!this.actividad?.id || !elemento?.id) {
+      console.warn('Actividad ID or Elemento ID is missing');
+      return;
+    }
+  
     try {
+      this.loading = true; // Add loading state property to your component
       await this.actividadService.asignarElemento(this.actividad.id, elemento.id);
+
+      this.actividad.precio_unitario+=elemento.precio_unitario;
       
-      // Actualizar listas
       this.elementos = this.elementos.filter(e => e.id !== elemento.id);
       this.elementosAsignados = [...this.elementosAsignados, elemento];
       
-      alert('Elemento asignado correctamente');
-    } catch (error) {
+      //alert('Elemento asignado correctamente');
+      
+    } catch (error: unknown) {
       console.error('Error asignando elemento:', error);
-      alert('Error al asignar elemento');
+      //alert('Error al asignar elemento');
+    } finally {
+      this.loading = false;
     }
   }
 
@@ -104,10 +113,10 @@ export class ActividadDetalleComponent implements OnInit {
         this.elementos = [...this.elementos, elemento];
       }
       
-      alert('Elemento desasignado correctamente');
+      //alert('Elemento desasignado correctamente');
     } catch (error) {
       console.error('Error desasignando elemento:', error);
-      alert('Error al desasignar elemento');
+      //alert('Error al desasignar elemento');
     }
   }
 

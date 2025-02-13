@@ -5,10 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ActividadListaComponent } from './components/actividad-lista/actividad-lista.component';
 import ActividadAgregarComponent from './components/actividad-agregar/actividad-agregar.component';
+import { ActividadEditarComponent } from './components/actividad-editar/actividad-editar.component';
+import { AdminComponent } from './admin.component';
 
 
 @NgModule({
   declarations: [
+
+    
     
   ],
   imports: [

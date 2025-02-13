@@ -1,21 +1,23 @@
-import { Component } from '@angular/core';
-import { Elemento } from '../../../shared/models/elemento.model'; // Ensure Elemento is a class, not an interface
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { ElementoService } from '../../services/elemento.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule, NgFor } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Elemento } from '../../../shared/models/elemento.model';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-elemento-editar',
-  standalone: true, // 
-  imports: [CommonModule,FormsModule], // Importar módulos necesarios
-  templateUrl: './elemento-editar.component.html',
-  
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule
+  ],
+  templateUrl: './elemento-editar.component.html'
 })
-export class ElementoEditarComponent {
-
+export class ElementoEditarComponent implements OnInit {
   elemento: Elemento = new Elemento();
-  id: number;
+  idElemento!: number;
 
   constructor(
     private elementoServicio: ElementoService,
@@ -23,28 +25,29 @@ export class ElementoEditarComponent {
     private ruta: ActivatedRoute
   ) {}
 
-  onSubmit() {
-    //this.guardarElemento();
+  async ngOnInit() {
+    this.idElemento = Number(this.ruta.snapshot.paramMap.get('id'));
+
+    if (this.idElemento) {
+      const elemento = await this.elementoServicio.getElementoById(this.idElemento);
+      if (elemento) {
+        this.elemento = elemento;
+      }
+    }
   }
 
-  /* ngOnInit() {
-    this.id = this.ruta.snapshot.params['id'];
-    this.elementoServicio.obtenerElementoPorId(this.id).subscribe({
-      next: (datos) => this.elemento = datos,
-      error: (errores: any) => console.log(errores)
-    });
-  }
+  async onSubmit() {
+    const actualizado = await this.elementoServicio.updateElemento(this.idElemento, this.elemento);
 
- 
-
-  guardarElemento() {
-    this.elementoServicio.actualizarElemento(this.id, this.elemento).subscribe({
-      next: (datos) => this.irElementoLista(),
-      error: (errores) => console.log(errores)
-    });
+    if (actualizado) {
+      alert('Elemento actualizado con éxito');
+      this.enrutador.navigate(['/admin/elementos']);
+    }
   }
 
   irElementoLista() {
-    this.enrutador.navigate(['/elementos']);
+    this.enrutador.navigate(['/elemento-detalle', this.idElemento]);
   }
- */}
+}
+
+ 

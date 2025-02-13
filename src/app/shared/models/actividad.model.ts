@@ -2,20 +2,31 @@ import { Elemento } from "./elemento.model";
 
 export class Actividad {
 
-    id?: number;
+    id: number;
     codigo: string;
     nombre: string;
     descripcion: string;
    
     unidad: string;
-    cantidad: number;
-    precio_unitario: number;
-    precioTotal: number;
+    
+    precio_unitario: number=0;
+    //precioTotal?: number;
     //fechaUpdate: Date;
-    elementos: Elemento[];
+    //elementos: Elemento[];
 
-    constructor(){}
-
+    constructor(){
+        this.precio_unitario=0;
+    }
 
 }
- 
+export interface ActividadCreate {
+
+    
+    codigo: string;
+    nombre: string;
+    descripcion: string;
+   
+    unidad: string;
+    
+    precio_unitario: number;
+}

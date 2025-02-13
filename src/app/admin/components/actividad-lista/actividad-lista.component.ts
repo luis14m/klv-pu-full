@@ -32,7 +32,7 @@ export class ActividadListaComponent implements OnInit{
 
   constructor(
     private actividadService: ActividadService,
-    private enrutador: Router
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -52,43 +52,9 @@ export class ActividadListaComponent implements OnInit{
         value.toString().toLowerCase().includes(this.searchTerm.toLowerCase())
       )
     );
-  } 
+  }
+ editarActividad(id: number): void {
+    this.router.navigate(['/admin/actividad-editar', id]);
+  }
+   
 }
-  /*
-  private obtenerActividades() {
-    // Consumir los datos del observable (suscribirse)
-  
-      //this.actividadService.getActividades();
-  }
- 
-  editarActividad(id: number): void {
-    this.enrutador.navigate(['/actividad-editar', id]);
-  }
-  eliminarActividad(id: number) {
-     this.actividadServicio.eliminarActividad(id).subscribe({
-      next: (datos) => this.obtenerActividades(),
-      error: (errores) => console.log(errores),
-    });
-  }
-}
-
-  private obtenerActividades() {
-    // Consumir los datos del observable (suscribirse)
-    this.actividadServicio.obtenerActividadLista().subscribe((datos) => {
-      this.actividades = datos;
-    });
-  }
-
-
-  eliminarActividad(id: number) {
-    this.actividadServicio.eliminarActividad(id).subscribe({
-      next: (datos) => this.obtenerActividades(),
-      error: (errores) => console.log(errores),
-    });
-  }
-  detalleActividad(id: number): void {
-    console.log(id);
-    this.enrutador.navigate(['/actividad-detalle', id]);
-  }
-}
-*/

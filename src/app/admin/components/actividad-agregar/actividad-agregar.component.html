@@ -9,10 +9,8 @@
         <tr>
           <th scope="col">Codigo</th>
           <th scope="col">Nombre</th>
+          <th scope="col">Descripcion</th>
           <th scope="col">Unidad</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Precio Unitario</th>
-
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -27,7 +25,8 @@
               [(ngModel)]="actividad.codigo"
               class="form-control"
               placeholder="ABC01"
-              size="5"
+              maxlength="5"
+              size="4"
             />
           </td>
           <td>
@@ -39,51 +38,40 @@
               [(ngModel)]="actividad.nombre"
               class="form-control"
               placeholder="nombre"
-              size="50"
+              size="15"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              id="cantidad"
+              name="cantidad"
+              required="true"
+              [(ngModel)]="actividad.descripcion"
+              class="form-control"
+              value=""
+              maxlength="50"
             />
           </td>
           <td>
             <select
-            class="form-select"
+              class="form-select"
               id="unidad"
               name="unidad"
               required="true"
               [(ngModel)]="actividad.unidad"
               class="form-control"
-              value="ML">
+              value="ML"
+            >
               <option value="M">M</option>
               <option selected>ML</option>
               <option value="M²">M²</option>
               <option value="M³">M³</option>
               <script>
                 // Establecer el valor predeterminado dinámicamente
-                document.getElementById('unidad').value = "M"; // Selecciona "Opción 2"
+                document.getElementById("unidad").value = "M"; // Selecciona "Opción 2"
               </script>
             </select>
-          </td>
-          <td>
-            <input
-              type="number"
-              id="cantidad"
-              name="cantidad"
-              required="true"
-              [(ngModel)]="actividad.cantidad"
-              class="form-control"
-              placeholder="1"
-              value="1"
-              maxlength="5">
-          </td>
-          <td>
-            <input
-              type="number"
-              id="precioUnitario"
-              name="precioUnitario"
-              required="true"
-              [(ngModel)]="actividad.precio_unitario"
-              class="form-control"
-              placeholder="1000"
-              size="5"
-            />
           </td>
 
           <td><button type="submit" class="btn btn-primary">+</button></td>
@@ -92,7 +80,14 @@
     </table>
   </form>
 
-  <div class="text-center">
-    <a href="/" class="btn btn-danger float-rigth">Regresar</a>
+  <!-- Botones -->
+  <div class="container text-center" style="margin: 30px">
+    <button
+      type="button"
+      class="btn btn-secondary ms-2"
+      (click)="irListaActividades()"
+    >
+      Cancelar
+    </button>
   </div>
 </div>

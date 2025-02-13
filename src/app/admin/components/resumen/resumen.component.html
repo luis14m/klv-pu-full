@@ -35,9 +35,9 @@
               <td>{{ actividad.codigo }}</td>
               <td>{{ actividad.nombre }}</td>
               <td>{{ actividad.unidad }}</td>
-              <td>{{ actividad.cantidad }}</td>
+              
               <td>{{ actividad.precio_unitario }}</td>
-              <td>{{ actividad.precioTotal }}</td>
+              
             </tr>
             <!-- Fila de elementos colapsable -->
             <tr>
@@ -45,7 +45,7 @@
                 <div class="collapse" [id]="'elementos-' + i">
                   <table class="table table-sm table-bordered m-0">
                     <tbody>
-                      <tr *ngFor="let elemento of actividad.elementos">
+                      <tr *ngFor="let elemento of elementos">
                         <td>{{ elemento.codigo }}</td>
                         <td>{{ elemento.nombre }}</td>
                         <td>{{ elemento.unidad }}</td>
@@ -54,7 +54,7 @@
                             [(ngModel)]="elemento.cantidad" class="form-control" placeholder="Cantidad" />
                         </td>
                         <td>{{ elemento.precio_unitario }}</td>
-                        <td>{{ elemento.precioTotal }}</td>
+                        <td>{{ elemento.precio_total }}</td>
                       </tr>
                     </tbody>
                   </table>

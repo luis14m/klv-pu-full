@@ -11,6 +11,7 @@ import { ElementosListaComponent } from './components/elementos-lista/elementos-
 import { ResumenComponent } from './components/resumen/resumen.component';
 import { ActividadAsignarElementoComponent } from './components/actividad-asignar-elemento/actividad-asignar-elemento.component';
 import ActividadAgregarComponent from './components/actividad-agregar/actividad-agregar.component';
+import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
 
@@ -21,13 +22,15 @@ const routes: Routes = [
   {path:'admin/agregar-elemento', component: ElementoAgregarComponent},
   {path:'admin/actividad-detalle/:id', component: ActividadDetalleComponent},
   {path:'apu/resumen', component: ResumenComponent},
-  { path: '**', redirectTo: 'admin/actividades' }, // Redirige a la lista si la ruta no existe
+ /*  { path: '**', redirectTo: 'admin/actividades' }, // Redirige a la lista si la ruta no existe */
   {path:'asignar-elemento/:id', component: ActividadAsignarElementoComponent},
-  
+  {path:'admin/actividad-editar/:id', component: ActividadEditarComponent},
+  {path:'admin/elemento-editar/:id', component: ElementoEditarComponent},
+ 
 /* 
-  {path:'editar-elemento/:id', component: ElementoEditarComponent},
+ 
   
-  {path:'actividad-editar/:id', component: ActividadEditarComponent},
+  
   
   
   {path:'apu-editar/:id', component: ApuEditarComponent}, */

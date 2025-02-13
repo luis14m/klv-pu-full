@@ -1,68 +1,51 @@
-import { Component, Inject } from '@angular/core';
-import { Actividad } from '../../../shared/models/actividad.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { ActividadService } from '../../services/actividad.service';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { OnInit } from '@angular/core';
+import { Actividad } from '../../../shared/models/actividad.model';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-actividad-editar',
-  standalone: true, // 
-  imports: [CommonModule,FormsModule], // Importar módulos necesarios
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule
+],
   templateUrl: './actividad-editar.component.html'
-
 })
-
-export class ActividadEditarComponent {
-
+export class ActividadEditarComponent implements OnInit {
   actividad: Actividad = new Actividad();
- 
-  idActividad: number;
-  
-
+  idActividad!: number;
 
   constructor(
     private actividadServicio: ActividadService,
     private enrutador: Router,
-    private ruta: ActivatedRoute) { }
+    private ruta: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
+    this.idActividad = Number(this.ruta.snapshot.paramMap.get('id'));
 
-    //this.obtenerActividad();
-  
-  }
-
-  onSubmit() {
-
-    //this.guardarActividad();
-
-  }
-
-
-  /* obtenerActividad() {
-    this.idActividad = this.ruta.snapshot.params['id'];
-    console.log(this.idActividad);
-    this.actividadServicio.obtenerActividadPorId(this.idActividad).subscribe({
-      next: (datos) => (this.actividad = datos),
-      error: (errores: any) => console.log(errores),
-    });
-
-  } */
-
- /*  guardarActividad() {
-    this.actividadServicio.editarActividad(this.idActividad, this.actividad).subscribe(
-      {
-        next: (datos) => this.irActividadLista(),
-        error: (errores) => console.log(errores)
+    if (this.idActividad) {
+      const actividad = await this.actividadServicio.getActividadById(this.idActividad);
+      if (actividad) {
+        this.actividad = actividad;
       }
-    );
+    }
   }
- */
+
+  async onSubmit() {
+    const actualizado = await this.actividadServicio.updateActividad(this.idActividad, this.actividad);
+
+    if (actualizado) {
+      alert('Actividad actualizada con éxito');
+      this.enrutador.navigate(['/admin/actividades']);
+    }
+  }
   irActividadLista() {
     this.enrutador.navigate(['/actividad-detalle', this.idActividad]);
   }
-
 }

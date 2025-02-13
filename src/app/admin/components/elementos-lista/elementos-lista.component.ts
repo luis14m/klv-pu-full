@@ -1,61 +1,58 @@
-import { Component } from '@angular/core';
-import { Elemento } from '../../../shared/models/elemento.model'; // Ensure the path is correct and the file exists
-import { ElementoService } from '../../services/elemento.service'; // Assuming you have an ElementoService similar to ActividadService
-import { Router } from '@angular/router';
-import { CommonModule, NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Elemento } from '../../../shared/models/elemento.model';
+import { ElementoService } from '../../services/elemento.service';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-elementos-lista',
-  standalone: true, // 
-  imports: [CommonModule,FormsModule], // Importar módulos necesarios
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    RouterModule,
+  ],
   templateUrl: './elementos-lista.component.html',
 })
-export class ElementosListaComponent {
+export class ElementosListaComponent implements OnInit {
 
   elementos: Elemento[] = [];
+  elemento: Elemento;
   searchTerm: string = '';
 
   columns = [
-    { prop: 'codigo', name: 'Codigo' },
+    { prop: 'codigo', name: 'Código' },
     { prop: 'nombre', name: 'Nombre' },
   ];
 
   constructor(
-    private elementoServicio: ElementoService, 
-    private enrutador: Router
+    private elementoService: ElementoService,
+    private router: Router
   ) {}
 
-  ngOnInit() {
-    // Cargamos los Elementos
-    //this.obtenerElementos();
+  async ngOnInit(): Promise<void> {
+    await this.loadElementos(); // Carga los elementos al iniciar el componente
   }
 
- /*  private obtenerElementos() {
-    // Consumir los datos del observable (suscribirse)
-    this.elementoServicio.obtenerElementoLista().subscribe((datos) => {
-      this.elementos = datos;
-    }); */
-  
+  async loadElementos() {
+    try {
+      this.elementos = await this.elementoService.getElementos(); // Obtiene los elementos
+    } catch (error) {
+      console.error('Error loading elementos:', error);
+    }
+  }
 
   filteredData() {
     return this.elementos.filter((item) =>
       Object.values(item).some((value) =>
-        value !== null && value.toString().toLowerCase().includes(this.searchTerm.toLowerCase())
+        value.toString().toLowerCase().includes(this.searchTerm.toLowerCase())
       )
     );
   }
 
   editarElemento(id: number): void {
-    this.enrutador.navigate(['/editar-elemento', id]);
+    this.router.navigate(['/admin/elemento-editar', id]);
   }
-
- /*  eliminarElemento(id: number) {
-    this.elementoServicio.eliminarElemento(id).subscribe({
-      next: (datos) => this.obtenerElementos(),
-      error: (errores) => console.log(errores),
-    });
-  } */
-
 }

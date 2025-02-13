@@ -9,6 +9,7 @@
         <tr>
           <th scope="col">Codigo</th>
           <th scope="col">Nombre</th>
+          <th scope="col">Descripcion</th>
           <th scope="col">Unidad</th>
         </tr>
       </thead>
@@ -20,6 +21,10 @@
           </td>
           <td>
             <input type="text" id="nombre" name="nombre" required="true" [(ngModel)]="actividad.nombre"
+              class="form-control" placeholder="nombre" size="50" />
+          </td>
+          <td>
+            <input type="text" id="nombre" name="nombre" required="true" [(ngModel)]="actividad.descripcion"
               class="form-control" placeholder="nombre" size="50" />
           </td>
 
