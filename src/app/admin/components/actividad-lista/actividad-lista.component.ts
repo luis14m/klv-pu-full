@@ -56,5 +56,18 @@ export class ActividadListaComponent implements OnInit{
  editarActividad(id: number): void {
     this.router.navigate(['/admin/actividad-editar', id]);
   }
+
+  async deleteActividad(id: number): Promise<void> {
+    try {
+      await this.actividadService.deleteActividad(id);
+      console.log('Actividad eliminada correctamente');
+      // Recargar la lista de actividades después de eliminar
+      this.loadActividades();
+    } catch (error) {
+      console.error('Error al eliminar la actividad:', error);
+    }
+  }
+
+  
    
 }

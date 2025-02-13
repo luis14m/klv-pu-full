@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Actividad as ActividadCreate } from '../../shared/models/actividad.model';
+import { Actividad } from '../../shared/models/actividad.model';
 import { SupabaseService } from '../../shared/services/supabase.service';
 import { Elemento } from '../../shared/models/elemento.model';
 
@@ -12,10 +12,10 @@ export class ActividadService {
   private supabase = inject(SupabaseService).supabaseClient;
 
   // Método para insertar una nueva actividad
-  async insertActividad(actividad: ActividadCreate): Promise<ActividadCreate | null> {
+  async insertActividad(actividad: Actividad): Promise<Actividad | null> {
 
      // Elimina la propiedad 'id' del objeto actividad
-    const { id, ...actividadSinId } = actividad;
+    
     const { data, error } = await this.supabase
       .from('actividades') // Nombre de la tabla
       .insert([actividad]) // Inserta la actividad
@@ -29,21 +29,21 @@ export class ActividadService {
 
     return data ? data[0] : null; // Devuelve la actividad insertada o `null`
   }
-  async getActividades(): Promise<ActividadCreate[]> {
+  async getActividades(): Promise<Actividad[]> {
 
     let { data, error } = await this.supabase
       .from('actividades')
       .select('*')
 
     if (error) {
-      console.error('Error', error);
+      console.error('Error en listar', error);
       throw error;
     }
 
     return data || [];
 
   }
-  async getActividadById(id: number): Promise<ActividadCreate | null> {
+  async getActividadById(id: number): Promise<Actividad| null> {
     const { data, error } = await this.supabase
       .from('actividades')
       .select('*')
@@ -99,7 +99,7 @@ export class ActividadService {
     return data.map(item => item.elemento as unknown as Elemento);
   }
 
-  async updateActividad(id: number, actividad: Partial<ActividadCreate>): Promise<ActividadCreate | null> {
+  async updateActividad(id: number, actividad: Partial<Actividad>): Promise<Actividad | null> {
     const { data, error } = await this.supabase
       .from('actividades')
       .update(actividad)

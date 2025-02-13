@@ -32,18 +32,22 @@
         <td>{{ actividad.unidad }}</td>
 
         <td>
-          <button class="btn btn-success btn-sm me-2">
-            <i class="bi bi-arrow-right-square-fill"></i>
+          <button 
+          class="btn btn-primary btn-sm me-2"
+          [routerLink]="['/admin/agregar-actividad', actividad.id]">
+            <i class="bi bi-plus-square-fill"></i>
           </button>
 
           <button 
           class="btn btn-warning btn-sm me-2"
           [routerLink]="['/admin/actividad-editar', actividad.id]">
           <i class="bi bi-pencil"></i>
-        </button>
+          </button>
 
-          <button class="btn btn-danger btn-sm">
+          <button class="btn btn-danger btn-sm"
+          (click)="deleteActividad(actividad.id)">
             <i class="bi bi-trash"></i>
+            
           </button>
         </td>
       </tr>

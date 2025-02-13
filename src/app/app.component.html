@@ -18,17 +18,17 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="admin/actividades">Inicio</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="admin/actividades">Lista Actividades</a></li>
-            <li><a class="dropdown-item" routerLink="admin/elementos">Lista Elementos</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" routerLink="admin/agregar-actividad">+Actividad</a></li>
-            <li><a class="dropdown-item" routerLink="admin/agregar-elemento">+Elementos</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="admin/actividades">Lista Actividades</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="admin/elementos">Lista Elementos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="admin/agregar-actividad">+Actividad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="admin/agregar-elemento">+Elementos</a>
         </li>
       </ul>
     </div>
@@ -36,7 +36,5 @@
 </nav>
 
 <div class="container">
-
   <router-outlet></router-outlet>
-  
 </div>

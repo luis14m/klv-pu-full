@@ -19,7 +19,7 @@ export class Actividad {
     }
 
 }
-export interface ActividadCreate {
+/* export interface ActividadCreate {
 
     
     codigo: string;
@@ -29,4 +29,4 @@ export interface ActividadCreate {
     unidad: string;
     
     precio_unitario: number;
-}
+} */
