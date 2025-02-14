@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from "../app.component";
 
 @Component({
   selector: 'app-admin',
-  template: `<router-outlet></router-outlet>`, // Solo si no hay más contenido
   standalone: true,
-  imports: [RouterOutlet]
+  imports: [CommonModule, RouterModule, AppComponent], // Importa RouterModule para usar <router-outlet>
+  templateUrl: './admin.component.html'
 })
 export class AdminComponent {}

@@ -12,10 +12,18 @@ export class ActividadElementoService {
   
     private supabase = inject(SupabaseService).supabaseClient;
   // Método para obtener todos los registros de la tabla actividad_elemento
-  async getActividadElementos(): Promise<any[]> {
+  async getActividadesConElementos(): Promise<any[]> {
+    
     const { data, error } = await this.supabase
       .from('actividad_elemento')
-      .select('*');
+      .select(`
+        actividad_id,
+        actividades:actividad_id (nombre),
+        elemento_id,
+        elementos:elemento_id (nombre),
+        cantidad
+      `);
+
 
     if (error) {
       console.error('Error fetching actividad_elemento:', error);

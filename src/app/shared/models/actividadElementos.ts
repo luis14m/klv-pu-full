@@ -6,5 +6,5 @@ export class ActividadElementos {
     cantidad: number;
     precioUnitario: number;
     Preciototal: number;
-    created_at: string;
+    created_at: Date;
 }

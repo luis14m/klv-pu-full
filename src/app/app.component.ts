@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ActividadListaComponent } from './admin/components/actividad-lista/actividad-lista.component';
-import { AdminModule } from './admin/admin.module';
+
 
 
 @Component({

@@ -11,7 +11,8 @@ import { ActividadService } from '../../services/actividad.service';
   standalone: true,
   imports: [CommonModule, FormsModule], // Importar módulos necesarios
 })
-export default class ActividadAgregarComponent {
+export class ActividadAgregarComponent {
+  
   actividad:  ActividadCreate = new  ActividadCreate(); // Objeto para almacenar los datos del formulario
 
   constructor(

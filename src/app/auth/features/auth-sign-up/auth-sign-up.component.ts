@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './auth-sign-up.component.html',
-  styleUrl: './auth-sign-up.component.css'
+  
 })
 export class AuthSignUpComponent {
 
